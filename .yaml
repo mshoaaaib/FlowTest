@@ -12,12 +12,13 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Call Another API
-        run: |
-          # Extract the ticket number from the webhook payload
-          ticket_number="${{ github.event.client_payload.ticket_number }}"
+       - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
 
-          # Call the another API using the extracted ticket number
-          # Replace with your actual API call
-          curl -X POST "https://your-api-url.com" -d "ticket=${ticket_number}"
+    - name: Install dependencies
+      run: npm install
 
+    - name: Run JavaScript file
+      run: node api.js.js
